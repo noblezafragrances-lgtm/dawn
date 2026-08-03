@@ -1,0 +1,66 @@
+<div class="page-head" style="text-align:center; border-bottom:none;">
+  <div class="page-title">Your Cart</div>
+</div>
+
+<div class="page-wrap">
+  {% if cart.item_count > 0 %}
+    <div class="cart-layout">
+      <form action="{{ routes.cart_url }}" method="post" class="cart-items">
+        {% for item in cart.items %}
+          <div class="cart-item">
+            <div class="cart-item-img">
+              {% if item.image %}<img src="{{ item.image | image_url: width: 300 }}" alt="{{ item.title | escape }}">{% endif %}
+            </div>
+            <div class="cart-item-details">
+              <div class="cart-item-brand">{{ item.product.vendor }}</div>
+              <div class="cart-item-name">{{ item.product.title }}</div>
+              <div class="cart-item-size">Size: {{ item.variant.title }}</div>
+              <div class="qty-box" style="width:104px;">
+                <button type="button" onclick="nbCartQty('{{ item.key }}', -1)">&minus;</button>
+                <span>{{ item.quantity }}</span>
+                <button type="button" onclick="nbCartQty('{{ item.key }}', 1)">+</button>
+              </div>
+              <button type="button" class="cart-item-remove" onclick="nbCartRemove('{{ item.key }}')">Remove</button>
+            </div>
+            <div class="cart-item-price">
+              {% if item.variant.compare_at_price > item.variant.price %}
+                <span class="was">{{ item.variant.compare_at_price | money }}</span>
+              {% endif %}
+              <span class="now">{{ item.final_line_price | money }}</span>
+            </div>
+          </div>
+        {% endfor %}
+
+        <div class="cart-note">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M12 2 4 5v6c0 5 3.4 8.7 8 11 4.6-2.3 8-6 8-11V5l-8-3z"/><polyline points="9 12 11.5 14.5 15.5 9.5"/></svg>
+          <span>All items are 100% authentic. Please note: all sales are final once your order has shipped.</span>
+        </div>
+      </form>
+
+      <div class="summary-box">
+        <div class="summary-title">Order Summary</div>
+        <div class="summary-row"><span>Subtotal</span><span>{{ cart.total_price | money }}</span></div>
+        <div class="summary-row">
+          <span>Shipping</span>
+          <span>{% if cart.total_price >= 7500 %}Free{% else %}$7.99{% endif %}</span>
+        </div>
+        <div class="summary-row"><span>Estimated Tax</span><span>Calculated at checkout</span></div>
+        <div class="shipping-note">Free shipping on $75+ orders (US &amp; Puerto Rico) &mdash; otherwise a $7.99 flat rate applies.</div>
+
+        <a href="{{ routes.cart_url }}/checkout" class="checkout-btn" style="display:block; text-align:center;">Checkout</a>
+      </div>
+    </div>
+  {% else %}
+    <div style="padding:80px 0; text-align:center;">
+      <p style="margin-bottom:20px;">Your cart is empty.</p>
+      <a href="{{ routes.all_products_collection_url }}" class="hero-cta" style="border-color:var(--color-black); color:var(--color-black);">Continue Shopping</a>
+    </div>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Main cart",
+  "settings": []
+}
+{% endschema %}

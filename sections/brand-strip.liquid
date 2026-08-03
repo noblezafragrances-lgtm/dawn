@@ -1,0 +1,42 @@
+<div class="shelf">
+  <div class="page-wrap">
+    <div class="shelf-head">
+      <div class="shelf-title">{{ section.settings.heading | default: 'Shop by Brand' }}</div>
+    </div>
+    <div class="brand-strip">
+      {% for block in section.blocks %}
+        <a href="{{ block.settings.url }}" class="brand-tile">{{ block.settings.brand_name }}</a>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Brand strip",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Shop by Brand" }
+  ],
+  "blocks": [
+    {
+      "type": "brand",
+      "name": "Brand",
+      "settings": [
+        { "type": "text", "id": "brand_name", "label": "Brand name" },
+        { "type": "url", "id": "url", "label": "Link" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Brand strip",
+      "blocks": [
+        { "type": "brand" },
+        { "type": "brand" },
+        { "type": "brand" },
+        { "type": "brand" }
+      ]
+    }
+  ]
+}
+{% endschema %}

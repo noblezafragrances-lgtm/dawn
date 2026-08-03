@@ -1,0 +1,75 @@
+{% comment %}
+  Renders a product card.
+  Usage: {% render 'product-card', product: product %}
+{% endcomment %}
+
+{% liquid
+  assign variants = product.variants
+  assign smallest_variant = variants.first
+  for v in variants
+    if v.price < smallest_variant.price
+      assign smallest_variant = v
+    endif
+  endfor
+%}
+
+<div class="product-card">
+  <a href="{{ product.url }}" class="product-card-media">
+    {% if product.featured_image %}
+      <img src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.featured_image.alt | escape }}" class="active" data-img-index="0">
+    {% endif %}
+    {% if product.images.size > 1 %}
+      <img src="{{ product.images[1] | image_url: width: 600 }}" alt="" data-img-index="1">
+    {% endif %}
+
+    {% if product.metafields.custom.is_best_seller %}
+      <div class="card-badge">Best Seller</div>
+    {% elsif product.created_at | date: '%s' | plus: 0 | times: 1 %}
+      {% comment %} New Arrival badge shown via product.tags instead in production {% endcomment %}
+    {% endif %}
+    {% if product.tags contains 'new' %}<div class="card-badge">New</div>{% endif %}
+
+    {% if product.images.size > 1 %}
+      <span class="card-arrow left" onclick="event.preventDefault(); nbCyclePreview(this, -1);">
+        <svg class="icon" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+      </span>
+      <span class="card-arrow right" onclick="event.preventDefault(); nbCyclePreview(this, 1);">
+        <svg class="icon" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+      </span>
+    {% endif %}
+  </a>
+
+  <button class="card-wish" aria-label="Add to wishlist" data-product-id="{{ product.id }}" onclick="nbToggleWishlist(this)">
+    <svg class="icon" viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+  </button>
+
+  <button class="quick-add" data-variant-id="{{ smallest_variant.id }}" onclick="nbQuickAdd(this)">Quick Add</button>
+
+  <div class="product-card-info">
+    <div class="product-card-brand">{{ product.vendor }}</div>
+    <div class="product-card-name">{{ product.title }}</div>
+
+    {% if smallest_variant.compare_at_price > smallest_variant.price %}
+      <div class="price on-sale">
+        <span class="was">{{ smallest_variant.compare_at_price | money }}</span>
+        <span class="now card-price">{{ smallest_variant.price | money }}</span>
+      </div>
+      <div class="save-line">You Save {{ smallest_variant.compare_at_price | minus: smallest_variant.price | money }}</div>
+    {% else %}
+      <div class="price card-price">{{ smallest_variant.price | money }}</div>
+    {% endif %}
+
+    {% if variants.size > 1 %}
+      <div class="card-sizes">
+        {% for v in variants %}
+          <span
+            class="size-chip{% if v.id == smallest_variant.id %} selected{% endif %}"
+            data-price="{{ v.price | money_without_currency }}"
+            data-compare="{{ v.compare_at_price | money_without_currency }}"
+            onclick="nbUpdateCardPrice(this)"
+          >{{ v.title }}</span>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</div>

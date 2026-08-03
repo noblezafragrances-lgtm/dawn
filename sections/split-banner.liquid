@@ -1,0 +1,43 @@
+<div class="page-wrap"><div class="shelf" style="padding-top:0;">
+  <div class="split-banner">
+    <a
+      class="split-panel"
+      href="{{ section.settings.left_url }}"
+      {% if section.settings.left_image != blank %}
+        style="background-image:url('{{ section.settings.left_image | image_url: width: 1000 }}');"
+      {% else %}
+        style="background:linear-gradient(160deg,#2c2c2c,#000);"
+      {% endif %}
+    >
+      <div class="split-label">{{ section.settings.left_label | default: 'Fragrances for Him' }}<span class="split-sub">Shop Now</span></div>
+    </a>
+    <a
+      class="split-panel"
+      href="{{ section.settings.right_url }}"
+      {% if section.settings.right_image != blank %}
+        style="background-image:url('{{ section.settings.right_image | image_url: width: 1000 }}');"
+      {% else %}
+        style="background:linear-gradient(200deg,#3a3a3a,#050505);"
+      {% endif %}
+    >
+      <div class="split-label">{{ section.settings.right_label | default: 'Fragrances for Her' }}<span class="split-sub">Shop Now</span></div>
+    </a>
+  </div>
+</div></div>
+
+{% schema %}
+{
+  "name": "Split banner",
+  "settings": [
+    { "type": "image_picker", "id": "left_image", "label": "Left image" },
+    { "type": "text", "id": "left_label", "label": "Left label", "default": "Fragrances for Him" },
+    { "type": "url", "id": "left_url", "label": "Left link" },
+    { "type": "image_picker", "id": "right_image", "label": "Right image" },
+    { "type": "text", "id": "right_label", "label": "Right label", "default": "Fragrances for Her" },
+    { "type": "url", "id": "right_url", "label": "Right link" }
+  ],
+  "presets": [
+    { "name": "Split banner" }
+  ]
+}
+{% endschema %}

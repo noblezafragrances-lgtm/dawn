@@ -1,0 +1,100 @@
+<div class="page-wrap">
+  <div class="breadcrumb"><a href="{{ routes.root_url }}">Home</a> / {{ collection.title }}</div>
+
+  <div class="page-head">
+    <div class="page-title">{{ collection.title }}</div>
+    <div class="page-count">{{ collection.products_count }} products</div>
+  </div>
+
+  <div class="collection-layout">
+    <!-- FILTER SIDEBAR -->
+    <aside class="filters">
+      <div class="filter-group">
+        <div class="filter-title">Price</div>
+        <div class="price-range">
+          <input class="price-input" type="text" placeholder="$0" id="filterPriceMin">
+          <span>&mdash;</span>
+          <input class="price-input" type="text" placeholder="$250" id="filterPriceMax">
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <div class="filter-title">Brand</div>
+        {% for value in collection.all_vendors %}
+          <label class="filter-option">
+            <input type="checkbox" class="filter-checkbox" name="filter.v.vendor" value="{{ value }}"> {{ value }}
+          </label>
+        {% endfor %}
+      </div>
+
+      <div class="filter-group">
+        <div class="filter-title">Gender</div>
+        <label class="filter-option"><input type="checkbox" class="filter-checkbox" name="filter.p.tag" value="Men"> Men</label>
+        <label class="filter-option"><input type="checkbox" class="filter-checkbox" name="filter.p.tag" value="Women"> Women</label>
+        <label class="filter-option"><input type="checkbox" class="filter-checkbox" name="filter.p.tag" value="Unisex"> Unisex</label>
+      </div>
+
+      <div class="filter-group">
+        <div class="filter-title">Bottle Size</div>
+        <label class="filter-option"><input type="checkbox" class="filter-checkbox" name="filter.v.option.size" value="under-1oz"> Under 1 oz</label>
+        <label class="filter-option"><input type="checkbox" class="filter-checkbox" name="filter.v.option.size" value="1-2.4oz"> 1 oz &ndash; 2.4 oz</label>
+        <label class="filter-option"><input type="checkbox" class="filter-checkbox" name="filter.v.option.size" value="2.5-3.2oz"> 2.5 oz &ndash; 3.2 oz</label>
+        <label class="filter-option"><input type="checkbox" class="filter-checkbox" name="filter.v.option.size" value="3.3-4.9oz"> 3.3 oz &ndash; 4.9 oz</label>
+        <label class="filter-option"><input type="checkbox" class="filter-checkbox" name="filter.v.option.size" value="5-6.5oz"> 5 oz &ndash; 6.5 oz</label>
+        <label class="filter-option"><input type="checkbox" class="filter-checkbox" name="filter.v.option.size" value="6.7oz-up"> 6.7 oz &amp; Up</label>
+      </div>
+
+      <div class="filter-group">
+        <div class="filter-title">Packaging</div>
+        <label class="filter-option"><input type="checkbox" class="filter-checkbox" name="filter.p.tag" value="gift-set"> Gift Set</label>
+        <label class="filter-option"><input type="checkbox" class="filter-checkbox" name="filter.p.tag" value="mini"> Mini Bottle</label>
+        <label class="filter-option"><input type="checkbox" class="filter-checkbox" name="filter.p.tag" value="sample"> Sample Vial</label>
+        <label class="filter-option"><input type="checkbox" class="filter-checkbox" name="filter.p.tag" value="tester"> Tester</label>
+      </div>
+
+      <div class="clear-filters" onclick="window.location.href='{{ collection.url }}'">Clear All Filters</div>
+    </aside>
+
+    <!-- PRODUCT GRID -->
+    <div class="results">
+      <div class="toolbar">
+        <div class="active-filters" id="activeFilters"></div>
+        <select class="sort-select" onchange="window.location.href='{{ collection.url }}?sort_by=' + this.value">
+          <option value="best-selling" {% if collection.sort_by == 'best-selling' %}selected{% endif %}>Best Selling</option>
+          <option value="price-ascending" {% if collection.sort_by == 'price-ascending' %}selected{% endif %}>Price: Low to High</option>
+          <option value="price-descending" {% if collection.sort_by == 'price-descending' %}selected{% endif %}>Price: High to Low</option>
+          <option value="created-descending" {% if collection.sort_by == 'created-descending' %}selected{% endif %}>Newest</option>
+        </select>
+      </div>
+
+      <div class="product-grid">
+        {% paginate collection.products by 12 %}
+          {% for product in collection.products %}
+            {% render 'product-card', product: product %}
+          {% endfor %}
+
+          {% if paginate.pages > 1 %}
+            <div class="pagination" style="grid-column:1/-1;">
+              {% if paginate.previous %}<a href="{{ paginate.previous.url }}" class="page-num">&larr;</a>{% endif %}
+              {% for part in paginate.parts %}
+                {% if part.is_link %}
+                  <a href="{{ part.url }}" class="page-num">{{ part.title }}</a>
+                {% else %}
+                  <span class="page-num{% if part.title == paginate.current_page %} active{% endif %}">{{ part.title }}</span>
+                {% endif %}
+              {% endfor %}
+              {% if paginate.next %}<a href="{{ paginate.next.url }}" class="page-num">&rarr;</a>{% endif %}
+            </div>
+          {% endif %}
+        {% endpaginate %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Main collection",
+  "settings": []
+}
+{% endschema %}

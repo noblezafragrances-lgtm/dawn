@@ -1,0 +1,23 @@
+<div class="trust-strip">
+  <div class="trust-item">
+    <svg class="icon" viewBox="0 0 24 24"><path d="M12 2 4 5v6c0 5 3.4 8.7 8 11 4.6-2.3 8-6 8-11V5l-8-3z"/><polyline points="9 12 11.5 14.5 15.5 9.5"/></svg>
+    {{ section.settings.trust_item_1 | default: 'Authenticity Guaranteed' }}
+  </div>
+  <div class="trust-item">
+    <svg class="icon" viewBox="0 0 24 24"><path d="M3 7h11v9H3z"/><path d="M14 10h4l3 3v3h-7z"/><circle cx="7" cy="18" r="1.6"/><circle cx="17.5" cy="18" r="1.6"/></svg>
+    {{ section.settings.trust_item_2 | default: 'Free Shipping $75+ USD' }}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Trust strip",
+  "settings": [
+    { "type": "text", "id": "trust_item_1", "label": "First item", "default": "Authenticity Guaranteed" },
+    { "type": "text", "id": "trust_item_2", "label": "Second item", "default": "Free Shipping $75+ USD" }
+  ],
+  "presets": [
+    { "name": "Trust strip" }
+  ]
+}
+{% endschema %}
