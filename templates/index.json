@@ -1,84 +1,13 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
-  "sections": {
-    "hero": {
-      "type": "hero-banner",
-      "settings": {
-        "eyebrow": "New Arrivals",
-        "heading": "Discover Your Signature Scent",
-        "button_label": "Shop Now",
-        "button_url": "/collections/new-arrivals"
-      }
-    },
-    "trust": {
-      "type": "trust-strip",
-      "settings": {
-        "trust_item_1": "Authenticity Guaranteed",
-        "trust_item_2": "Free Shipping $75+ USD"
-      }
-    },
-    "best-sellers": {
-      "type": "product-grid",
-      "settings": {
-        "heading": "Best Sellers",
-        "collection": "best-sellers",
-        "product_count": 4
-      }
-    },
-    "him-her": {
-      "type": "split-banner",
-      "settings": {
-        "left_label": "Fragrances for Him",
-        "left_url": "/collections/him",
-        "right_label": "Fragrances for Her",
-        "right_url": "/collections/her"
-      }
-    },
-    "new-arrivals": {
-      "type": "product-grid",
-      "settings": {
-        "heading": "New Arrivals",
-        "collection": "new-arrivals",
-        "product_count": 4
-      }
-    },
-    "shop-by-brand": {
-      "type": "brand-strip",
-      "settings": { "heading": "Shop by Brand" },
-      "blocks": {
-        "b1": { "type": "brand", "settings": { "brand_name": "Giorgio Armani", "url": "/collections/giorgio-armani" } },
-        "b2": { "type": "brand", "settings": { "brand_name": "Versace", "url": "/collections/versace" } },
-        "b3": { "type": "brand", "settings": { "brand_name": "Valentino", "url": "/collections/valentino" } },
-        "b4": { "type": "brand", "settings": { "brand_name": "Dior", "url": "/collections/dior" } },
-        "b5": { "type": "brand", "settings": { "brand_name": "YSL", "url": "/collections/ysl" } },
-        "b6": { "type": "brand", "settings": { "brand_name": "Prada", "url": "/collections/prada" } }
-      },
-      "block_order": ["b1", "b2", "b3", "b4", "b5", "b6"]
-    },
-    "deals": {
-      "type": "product-grid",
-      "settings": {
-        "heading": "Deals Under $50",
-        "collection": "deals-under-50",
-        "product_count": 4
-      }
-    },
-    "arabic": {
-      "type": "product-grid",
-      "settings": {
-        "heading": "Arabic Fragrances",
-        "collection": "arabic-fragrances",
-        "product_count": 4
-      }
-    }
-  },
-  "order": [
-    "hero",
-    "trust",
-    "best-sellers",
-    "him-her",
-    "new-arrivals",
-    "shop-by-brand",
-    "deals",
-    "arabic"
-  ]
+  "sections": {},
+  "order": []
 }
