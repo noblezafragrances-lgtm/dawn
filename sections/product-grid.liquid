@@ -1,0 +1,30 @@
+<div class="shelf">
+  <div class="page-wrap">
+    <div class="shelf-head">
+      <div class="shelf-title">{{ section.settings.heading }}</div>
+      {% if section.settings.collection != blank %}
+        <a class="view-all" href="{{ section.settings.collection.url }}">View All</a>
+      {% endif %}
+    </div>
+    <div class="product-grid">
+      {% if section.settings.collection != blank %}
+        {% for product in section.settings.collection.products limit: section.settings.product_count %}
+          {% render 'product-card', product: product %}
+        {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Product grid",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Section heading", "default": "Best Sellers" },
+    { "type": "collection", "id": "collection", "label": "Collection to pull from" },
+{ "type": "range", "id": "product_count", "label": "Number of products", "min": 4, "max": 8, "step": 1, "default": 4 }  ],
+  "presets": [
+    { "name": "Product grid", "settings": { "heading": "Best Sellers" } }
+  ]
+}
+{% endschema %}
