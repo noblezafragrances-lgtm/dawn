@@ -22,12 +22,16 @@
       "type": "trust-strip",
       "settings": {
         "trust_item_1": "Authenticity Guaranteed",
-        "trust_item_2": "Free Shipping $75+ USD"
+        "trust_item_2": ""
       }
     },
     "best-sellers": {
       "type": "product-grid",
-      "settings": {}
+      "settings": {
+        "heading": "Best Sellers",
+        "collection": "",
+        "product_count": 4
+      }
     },
     "him-her": {
       "type": "split-banner",
@@ -40,7 +44,11 @@
     },
     "new-arrivals": {
       "type": "product-grid",
-      "settings": {}
+      "settings": {
+        "heading": "Best Sellers",
+        "collection": "",
+        "product_count": 4
+      }
     },
     "shop-by-brand": {
       "type": "brand-strip",
@@ -102,11 +110,19 @@
     },
     "deals": {
       "type": "product-grid",
-      "settings": {}
+      "settings": {
+        "heading": "Best Sellers",
+        "collection": "",
+        "product_count": 4
+      }
     },
     "arabic": {
       "type": "product-grid",
-      "settings": {}
+      "settings": {
+        "heading": "Best Sellers",
+        "collection": "",
+        "product_count": 4
+      }
     }
   },
   "order": [
