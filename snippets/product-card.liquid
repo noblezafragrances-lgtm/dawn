@@ -24,8 +24,6 @@
 
     {% if product.metafields.custom.is_best_seller %}
       <div class="card-badge">Best Seller</div>
-    {% elsif product.created_at | date: '%s' | plus: 0 | times: 1 %}
-      {% comment %} New Arrival badge shown via product.tags instead in production {% endcomment %}
     {% endif %}
     {% if product.tags contains 'new' %}<div class="card-badge">New</div>{% endif %}
 
