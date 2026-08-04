@@ -22,31 +22,82 @@
       "type": "trust-strip",
       "settings": {
         "trust_item_1": "Authenticity Guaranteed",
-        "trust_item_2": "fast and secured shipping"
+        "trust_item_2": "Free Shipping $75+ USD"
       }
     },
     "best-sellers": {
       "type": "product-grid",
       "settings": {
         "heading": "Best Sellers",
-        "collection": "",
+        "collection": "best-sellers",
         "product_count": 4
       }
     },
-    "him-her": {
-      "type": "split-banner",
+    "for-him": {
+      "type": "gender-banner",
       "settings": {
-        "left_label": "Fragrances for Him",
-        "left_url": "/collections/him",
-        "right_label": "Fragrances for Her",
-        "right_url": "/collections/her"
+        "style": "him",
+        "eyebrow": "Collection",
+        "heading": "For Him",
+        "button_label": "Shop Now",
+        "button_url": "/collections/him"
+      }
+    },
+    "category-tabs": {
+      "type": "category-tabs",
+      "blocks": {
+        "t1": {
+          "type": "tab",
+          "settings": {
+            "label": "Niche",
+            "url": "/collections/niche"
+          }
+        },
+        "t2": {
+          "type": "tab",
+          "settings": {
+            "label": "Arabic",
+            "url": "/collections/arabic-fragrances"
+          }
+        },
+        "t3": {
+          "type": "tab",
+          "settings": {
+            "label": "Designer",
+            "url": "/collections/designer"
+          }
+        },
+        "t4": {
+          "type": "tab",
+          "settings": {
+            "label": "Unisex",
+            "url": "/collections/unisex"
+          }
+        }
+      },
+      "block_order": [
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "settings": {}
+    },
+    "for-her": {
+      "type": "gender-banner",
+      "settings": {
+        "style": "her",
+        "eyebrow": "Collection",
+        "heading": "For Her",
+        "button_label": "Shop Now",
+        "button_url": "/collections/her"
       }
     },
     "new-arrivals": {
       "type": "product-grid",
       "settings": {
-        "heading": "Best Sellers",
-        "collection": "",
+        "heading": "New Arrivals",
+        "collection": "new-arrivals",
         "product_count": 4
       }
     },
@@ -111,16 +162,16 @@
     "deals": {
       "type": "product-grid",
       "settings": {
-        "heading": "Best Sellers",
-        "collection": "",
+        "heading": "Deals Under $50",
+        "collection": "deals-under-50",
         "product_count": 4
       }
     },
     "arabic": {
       "type": "product-grid",
       "settings": {
-        "heading": "Best Sellers",
-        "collection": "",
+        "heading": "Arabic Fragrances",
+        "collection": "arabic-fragrances",
         "product_count": 4
       }
     }
@@ -129,7 +180,9 @@
     "hero",
     "trust",
     "best-sellers",
-    "him-her",
+    "for-him",
+    "category-tabs",
+    "for-her",
     "new-arrivals",
     "shop-by-brand",
     "deals",
