@@ -11,6 +11,11 @@
   "sections": {
     "hero": {
       "type": "hero-banner",
+      "custom_css": [
+        ".banner__content {justify-content: flex-start !important;}",
+        ".banner__box {text-align: left !important; margin-left: 6%; max-width: 520px; background: transparent !important;}",
+        ".banner::after {background: linear-gradient( 90deg, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.35) 45%, transparent 75% ) !important; opacity: 1 !important;}"
+      ],
       "settings": {
         "image": "shopify://shop_images/ChatGPT_Image_Aug_4_2026_02_28_53_PM.png",
         "eyebrow": "New Arrivals",
