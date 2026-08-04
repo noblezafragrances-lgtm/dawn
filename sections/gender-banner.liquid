@@ -1,0 +1,32 @@
+<div
+  class="gender-banner{% if section.settings.style == 'her' %} her{% endif %}{% if section.settings.image == blank %} no-image{% endif %}"
+  {% if section.settings.image != blank %}
+    style="background-image:url('{{ section.settings.image | image_url: width: 1600 }}');"
+  {% endif %}
+>
+  <div class="gender-banner-content">
+    <div class="eyebrow">{{ section.settings.eyebrow | default: 'Collection' }}</div>
+    <h2>{{ section.settings.heading | default: 'For Him' }}</h2>
+    <a class="gender-cta" href="{{ section.settings.button_url }}">{{ section.settings.button_label | default: 'Shop Now' }}</a>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Gender banner",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Banner image (1600x600 recommended)" },
+    { "type": "select", "id": "style", "label": "Fallback style (used only if no image)", "options": [
+        { "value": "him", "label": "Him (dark gradient)" },
+        { "value": "her", "label": "Her (warmer gradient)" }
+      ], "default": "him" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow text", "default": "Collection" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "For Him" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Shop Now" },
+    { "type": "url", "id": "button_url", "label": "Button link" }
+  ],
+  "presets": [
+    { "name": "Gender banner" }
+  ]
+}
+{% endschema %}
