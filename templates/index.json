@@ -36,6 +36,7 @@
     "for-him": {
       "type": "gender-banner",
       "settings": {
+        "image": "shopify://shop_images/D6EB7C00-CCA1-4408-BB86-BFC2C606C712.png",
         "style": "him",
         "eyebrow": "Collection",
         "heading": "For Him",
@@ -86,6 +87,7 @@
     "for-her": {
       "type": "gender-banner",
       "settings": {
+        "image": "shopify://shop_images/2A13B807-FDAF-470D-BCBA-209A10AEBCBF.png",
         "style": "her",
         "eyebrow": "Collection",
         "heading": "For Her",
