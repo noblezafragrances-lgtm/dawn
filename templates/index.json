@@ -17,7 +17,7 @@
         ".banner::after {background: linear-gradient( 90deg, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.35) 45%, transparent 75% ) !important; opacity: 1 !important;}"
       ],
       "settings": {
-        "image": "shopify://shop_images/ChatGPT_Image_Aug_4_2026_02_28_53_PM.png",
+        "image": "shopify://shop_images/nobleza-new-arrivals-split-designer-hero-1600x600.png",
         "eyebrow": "New Arrivals",
         "heading": "Discover Your Signature Scent",
         "button_label": "Shop Now",
