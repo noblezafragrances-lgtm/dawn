@@ -6,9 +6,13 @@
 {% liquid
   assign variants = product.variants
   assign smallest_variant = variants.first
+  assign largest_variant = variants.first
   for v in variants
     if v.price < smallest_variant.price
       assign smallest_variant = v
+    endif
+    if v.price > largest_variant.price
+      assign largest_variant = v
     endif
   endfor
 %}
@@ -41,8 +45,6 @@
     <svg class="icon" viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
   </button>
 
-  <button class="quick-add" data-variant-id="{{ smallest_variant.id }}" onclick="nbQuickAdd(this)">Quick Add</button>
-
   <div class="product-card-info">
     <div class="product-card-brand">{{ product.vendor }}</div>
     <div class="product-card-name">{{ product.title }}</div>
@@ -50,24 +52,13 @@
     {% if smallest_variant.compare_at_price > smallest_variant.price %}
       <div class="price on-sale">
         <span class="was">{{ smallest_variant.compare_at_price | money }}</span>
-        <span class="now card-price">{{ smallest_variant.price | money }}</span>
+        <span class="now">{{ smallest_variant.price | money }}</span>
       </div>
       <div class="save-line">You Save {{ smallest_variant.compare_at_price | minus: smallest_variant.price | money }}</div>
+    {% elsif variants.size > 1 %}
+      <div class="price-range">{{ smallest_variant.price | money }} – {{ largest_variant.price | money }}</div>
     {% else %}
-      <div class="price card-price">{{ smallest_variant.price | money }}</div>
-    {% endif %}
-
-    {% if variants.size > 1 %}
-      <div class="card-sizes">
-        {% for v in variants %}
-          <span
-            class="size-chip{% if v.id == smallest_variant.id %} selected{% endif %}"
-            data-price="{{ v.price | money_without_currency }}"
-            data-compare="{{ v.compare_at_price | money_without_currency }}"
-            onclick="nbUpdateCardPrice(this)"
-          >{{ v.title }}</span>
-        {% endfor %}
-      </div>
+      <div class="price">{{ smallest_variant.price | money }}</div>
     {% endif %}
   </div>
 </div>
